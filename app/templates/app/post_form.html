@@ -1,0 +1,30 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>投稿</h2>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Title field -->
+    <div class="formpost mb-3">
+        {% render_field form.title class="form-control" placeholder="タイトルを入力" %}
+    </div>
+    <!-- Content field -->
+    <div class="formpost mb-3">
+        {% render_field form.content class="form-control" placeholder="本文を入力" %}
+    </div>
+    <!-- Image field -->
+    <div class="formpost mb-3">
+        {% render_field form.image class="form-control" %}
+    </div>
+    <!-- Post button -->
+    <div class="formpost mb-3">
+    <button class="btn btn-warning" type="submit">投稿</button>
+    </div>
+</form>
+
+{% endblock %}

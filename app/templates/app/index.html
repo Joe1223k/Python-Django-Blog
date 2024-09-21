@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="row my-4">
+    <div class="col-md-8">
+        {% for post in post_data %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    {% if post.image %}
+                    <img src ="{{ post.image.url }}" class ="mb-3" width ="20%" alt ="{{ post.title }}">
+                    {% endif %}
+                    <p class="card-text">{{ post.content | truncatechars:100 }}</p>
+                    <div class="btn btn-warning">詳細</div>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ post.created | date }}
+                </div>
+                <a href="{% url 'post_detail' post.id %}" class="stretched-link"></a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header">このブログについて</h5>
+            <div class="card-body">
+                <p class="mb-0">
+                    (ブログ説明サンプル) <br>
+                    プログラミングについて学んだことをまとめています。
+                </p>
+                <br>
+                <p>【現在学習中】</p>
+                <ul class="custom-list">
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>HTML, CSS, JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
